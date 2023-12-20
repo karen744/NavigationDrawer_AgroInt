@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_cultivo"
+    android:background="@drawable/fondo_cult3"
     tools:context=".ui.gallery.GalleryFragment">
 
     <!-- Agrega el RecyclerView con el ID recyclerView -->

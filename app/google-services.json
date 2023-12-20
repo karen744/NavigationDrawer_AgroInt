@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "781469537685",
+    "project_id": "agroint-ddcc1",
+    "storage_bucket": "agroint-ddcc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781469537685:android:bd68a8cf16d39db84c129c",
+        "android_client_info": {
+          "package_name": "co.ude.udenar.agroint"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhwnQDzr71U4wdGq-DxOzQGpRFu07363I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
