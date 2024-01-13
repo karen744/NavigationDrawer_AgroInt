@@ -69,6 +69,9 @@ dependencies {
 
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
 
     testImplementation("junit:junit:4+")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
