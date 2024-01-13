@@ -15,7 +15,7 @@
             android:title="Cultivos" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ing_agronomo"
-            android:title="Ingenieros Agronomos" />
+            android:icon="@drawable/ic_planta"
+            android:title="Plantas" />
     </group>
 </menu>

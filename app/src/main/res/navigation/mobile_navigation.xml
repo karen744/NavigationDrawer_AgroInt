@@ -20,6 +20,6 @@
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="co.ude.udenar.agroint.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="Plantas"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
