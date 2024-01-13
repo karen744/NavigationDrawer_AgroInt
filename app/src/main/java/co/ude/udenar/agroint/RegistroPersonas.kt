@@ -2,6 +2,8 @@ package co.ude.udenar.agroint
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -10,57 +12,90 @@ import co.ude.udenar.agroint.databinding.ActivityRegistroPersonasBinding
 class RegistroPersonas : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityRegistroPersonasBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroPersonasBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
-        binding.button4.setOnClickListener {
-            val nombre = binding.editTextDatenombes.text.toString()
-            val edad = binding.editTextNumberedad.text.toString()
-            val correo = binding.editTextTextEmail.text.toString()
-            val contrasena = binding.editTextTextPassword.text.toString()
-            binding.button4.setOnClickListener {
-                val nombre = binding.editTextDatenombes.text.toString()
-                val edad = binding.editTextNumberedad.text.toString()
-                val correo = binding.editTextTextEmail.text.toString()
-                val contrasena = binding.editTextTextPassword.text.toString()
+        binding.btnGoToLogin.setOnClickListener { goToLogin() }
+        binding.btnRegister.setOnClickListener { register() }
 
-                if (nombre.isNotEmpty() && edad.isNotEmpty() && correo.isNotEmpty() && contrasena.isNotEmpty()) {
-                    // Verificar si el correo electrónico tiene un formato válido
-                    if (isEmailValid(correo)) {
-                        registrarUsuario(correo, contrasena, nombre, edad.toInt())
-                    } else {
-                        Toast.makeText(this, "El correo electrónico no es válido", Toast.LENGTH_SHORT).show()
-                    }
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+    }
+
+    private fun register() {
+        val name = binding.textFieldName.text.toString()
+        val lastName = binding.textFieldLastName.text.toString()
+        val id = binding.textFieldId.text.toString()
+        val phone = binding.textFieldPhone.text.toString()
+        val email = binding.textFieldEmail.text.toString()
+        val password = binding.textFieldPassword.text.toString()
+
+        if (isValidForm(name, lastName, id, phone, email, password)) {
+            /* Toast.makeText(this, "Formulario válido", Toast.LENGTH_SHORT).show() */
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(this@RegistroPersonas, "Registro exitoso", Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@RegistroPersonas,
+                        "Registro fallido ${it.exception.toString()}", Toast.LENGTH_LONG
+                    ).show()
+                    Log.d("FIREBASE", "Error: ${it.exception.toString()}")
                 }
             }
-            val intent = Intent(this, Inicio::class.java)
-            startActivity(intent)
         }
     }
 
-    private fun registrarUsuario(correo: String, contraseña: String, nombre: String, edad: Int) {
-        auth.createUserWithEmailAndPassword(correo, contraseña)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                    // Aquí puedes redirigir al usuario o realizar otras acciones después del registro.
-                } else {
-                    Toast.makeText(this, "Error en el registro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
+    private fun isValidForm(
+        name: String, lastName: String,
+        phone: String, email: String,
+        password: String, confirmPassword: String
+    ): Boolean {
+        if (name.isEmpty()) {
+            Toast.makeText(this, "Debes ingresar tu nombre", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (lastName.isEmpty()) {
+            Toast.makeText(this, "Debes ingresar tu apellido", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (phone.isEmpty()) {
+            Toast.makeText(this, "Debes ingresar tu teléfono", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Debes ingresar tu correo electrónico", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (password.isEmpty()) {
+            Toast.makeText(this, "Debes ingresar la contraseña", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (confirmPassword.isEmpty()) {
+            Toast.makeText(
+                this,
+                "Debes ingresar la confirmación de la contraseña",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+
+        if (password.length < 6) {
+            Toast.makeText(this, "La contraseña debe tener mínimo 6 carácteres", Toast.LENGTH_SHORT)
+                .show()
+            return false
+        }
+        return true
     }
 
-    fun isEmailValid(email: String): Boolean {
-        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        return email.matches(emailPattern.toRegex())
+    private fun goToLogin() {
+        val i = Intent(this, Login::class.java)
+        startActivity(i)
     }
 }
