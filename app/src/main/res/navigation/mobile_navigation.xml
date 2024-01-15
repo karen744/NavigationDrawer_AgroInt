@@ -22,4 +22,19 @@
         android:name="co.ude.udenar.agroint.ui.slideshow.SlideshowFragment"
         android:label="Plantas"
         tools:layout="@layout/fragment_slideshow" />
+
+        <fragment
+        android:id="@+id/nav_ingenieros"
+        android:name="co.ude.udenar.agroint.ui.ingenieros.IngeFragment"
+        android:label="Información Ingenieros"
+        tools:layout="@layout/fragment_ingenieros" />
+
+    <fragment
+        android:id="@+id/nav_llamadas"
+        android:name="co.ude.udenar.agroint.ui.llamadas.CallFragment"
+        android:label="Contactos"
+        tools:layout="@layout/fragment_call" />
+
+
+
 </navigation>

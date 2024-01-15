@@ -9,5 +9,6 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Cultivos</string>
-    <string name="menu_slideshow">Ingenieros Agronomos</string>
+    <string name="menu_slideshow">Plantas</string>
+    <string name="menu_ingenieros">Ingenieros</string>
 </resources>
