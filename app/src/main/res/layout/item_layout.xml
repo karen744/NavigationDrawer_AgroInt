@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="190dp"
+        android:layout_width="247px"
+        android:layout_height="504px"
         android:background="@drawable/rounded_imageview_background"
         android:scaleType="centerCrop">
 
