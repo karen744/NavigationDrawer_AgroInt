@@ -36,6 +36,12 @@
         tools:layout="@layout/fragment_crops" />
 
     <fragment
+        android:id="@+id/nav_crops_consulte"
+        android:name="co.ude.udenar.agroint.ui.cropsconsulte.CropsConsulte"
+        android:label="Consultar cultivos"
+        tools:layout="@layout/fragment_crops" />
+
+    <fragment
         android:id="@+id/nav_llamadas"
         android:name="co.ude.udenar.agroint.ui.llamadas.CallFragment"
         android:label="Contactos"

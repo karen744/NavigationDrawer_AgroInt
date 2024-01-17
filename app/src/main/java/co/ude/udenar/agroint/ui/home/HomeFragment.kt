@@ -1,6 +1,7 @@
 package co.ude.udenar.agroint.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,14 +73,16 @@ class HomeFragment : Fragment() {
                 } else {
                     // Si no hay un nombre de usuario configurado, muestra un mensaje predeterminado
                     greetingTextView.text = "Hola Usuario"
+                    Log.d("FIRESTORE", "Error al 14 obtener el nombre de usuario:")
                 }
             } else {
                 greetingTextView.text = "Hola Usuario"
+                Log.d("FIRESTORE", "Error 22 al obtener el nombre de usuario:")
             }
         }.addOnFailureListener {
             greetingTextView.text = "Hola Usuario"
             // Maneja el error al obtener el nombre de usuario desde Firestore
-            // Log.d("FIRESTORE", "Error al obtener el nombre de usuario: ${it.message}")
+             Log.d("FIRESTORE", "Error al obtener el nombre de usuario: ${it.message}")
         }
     }
 }

@@ -26,5 +26,10 @@
             android:icon="@drawable/ing_agronomo"
             android:title="Registrar cultivos"/>
 
+        <item
+            android:id="@+id/nav_crops_consulte"
+            android:icon="@drawable/ing_agronomo"
+            android:title="Consultar cultivos"/>
+
     </group>
 </menu>
