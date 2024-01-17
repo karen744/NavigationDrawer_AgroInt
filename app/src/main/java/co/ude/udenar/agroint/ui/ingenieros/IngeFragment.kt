@@ -19,10 +19,24 @@ class IngeFragment : Fragment() {
         Ingeniero("Ingeniera Agronoma Marly Sofia", "Ingeniera Agronoma de la Universidad de Nariño,\n" +
                 " Experiencia en Cultivos de clima Frio, en el cuidado de las plantas\n" +
                 " 2 Años de experiencia, cuento con varios locales\n" +
-                " ubicados en los municipios de La Cruz , La Union y en la ciduad de Pasto", "https://www.echocommunity.org/es/resources/d9f09c50-0194-41ea-9695-96fa96004706", R.drawable.ingeniera1),
-        Ingeniero("Luis A.jurado - Ingeniero Agronomo", "Dirección : Cra 21 Nº 3-16 Los Balcones De Villa Lucia\n" +
-                "Ciudad o Municipio : Pasto, Nariño. Colombia\n"+"Contacto: (602) 736-6433", "https://www.nexdu.com/co/pasto-nar/empresa/luis-ajurado-ingeniero-agronomo-431667#telefonos-y-direccion", R.drawable.ing1),
-        // Agrega más cultivos según sea necesario
+                " ubicados en los municipios de La Cruz , La Union y en la ciduad de Pasto",
+            "https://www.echocommunity.org/es/resources/d9f09c50-0194-41ea-9695-96fa96004706", R.drawable.ingeniera1),
+
+        Ingeniero("Luis A.jurado - Ingeniero Agronomo",
+            "Dirección : Cra 21 Nº 3-16 Los Balcones De Villa Lucia\n" +
+                    "Ciudad o Municipio : Pasto, Nariño. Colombia\n"+"Contacto: (602) 736-6433",
+            "https://www.nexdu.com/co/pasto-nar/empresa/luis-ajurado-ingeniero-agronomo-431667#telefonos-y-direccion", R.drawable.ing1),
+
+        Ingeniero("Ingeniera Agronoma Jennyfer Moncayo Araujo", "Zona: Sur\n" +
+                "Correo Electrónico: jmoncayoa@galagro.com.co\n" +
+                "Celular: 3128393886",
+            "https://www.camporigen.com/narino/", R.drawable.ingeniera2),
+
+        Ingeniero("Ingeniero Agronomo Jhon Fredy Tarapuez Guerrero", "Zona: Norte\n" +
+                "Correo Electrónico:  jtarapuesg@galagro.com.co\n" +
+                "Celular: 3235775397",
+            "https://www.camporigen.com/narino/", R.drawable.ingeniero2),
+                // Agrega más cultivos según sea necesario
     )
 
     override fun onCreateView(

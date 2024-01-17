@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
+    android:background="@drawable/fondocul"
     android:layout_marginTop="20dp"
-   >
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
+        android:background="@drawable/fondocul"
         android:padding="8dp">
 
         <ImageView
@@ -25,13 +27,16 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/imagenCultivo"
             android:layout_marginStart="8dp"
-            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/descripcionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_below="@id/nombreTextView"
             android:layout_toRightOf="@id/imagenCultivo"
             android:layout_marginTop="4dp"

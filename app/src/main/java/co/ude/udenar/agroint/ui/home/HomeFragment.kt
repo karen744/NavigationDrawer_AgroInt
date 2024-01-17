@@ -28,9 +28,13 @@ class HomeFragment : Fragment() {
 
         // Dummy data for testing
         val itemList = listOf(
-            ItemModel(R.drawable.m, "Item 1"),
-            ItemModel(R.drawable.j, "Item 2"),
-            ItemModel(R.drawable.v, "Item 3")
+            ItemModel(R.drawable.wen, "Item 1"),
+            ItemModel(R.drawable.uev, "Item 2"),
+            ItemModel(R.drawable.es, "Item 3"),
+            ItemModel(R.drawable.s, "Item 4"),
+            ItemModel(R.drawable.d, "Item 5"),
+            ItemModel(R.drawable.l, "Item 6"),
+            ItemModel(R.drawable.ma, "Item 7"),
             // Add more items as needed
         )
 
