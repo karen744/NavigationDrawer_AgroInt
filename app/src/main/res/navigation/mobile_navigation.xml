@@ -23,18 +23,23 @@
         android:label="Plantas"
         tools:layout="@layout/fragment_slideshow" />
 
-        <fragment
+    <fragment
         android:id="@+id/nav_ingenieros"
         android:name="co.ude.udenar.agroint.ui.ingenieros.IngeFragment"
         android:label="Información Ingenieros"
         tools:layout="@layout/fragment_ingenieros" />
 
     <fragment
+        android:id="@+id/nav_crops"
+        android:name="co.ude.udenar.agroint.ui.crops.CropsFragment"
+        android:label="Registrar cultivos"
+        tools:layout="@layout/fragment_crops" />
+
+    <fragment
         android:id="@+id/nav_llamadas"
         android:name="co.ude.udenar.agroint.ui.llamadas.CallFragment"
         android:label="Contactos"
         tools:layout="@layout/fragment_call" />
-
 
 
 </navigation>
