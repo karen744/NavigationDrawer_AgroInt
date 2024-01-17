@@ -21,8 +21,8 @@
         app:srcCompat="@drawable/campo_bg_cut_new" />
 
 
-
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="369dp"
         android:layout_height="146dp"
         android:layout_marginTop="40dp"
@@ -48,11 +48,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/greetingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Hola David"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.031" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="411dp"
         android:layout_height="309dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="76dp"
         android:background="@android:color/transparent"
         android:clipToPadding="false"
         android:padding="16dp"
@@ -60,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageBack"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageBack"
-        app:layout_constraintTop_toTopOf="@+id/imageBack"
+        app:layout_constraintTop_toBottomOf="@+id/greetingTextView"
         tools:ignore="MissingConstraints" />
 
 

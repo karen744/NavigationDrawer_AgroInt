@@ -9,16 +9,20 @@ import android.view.WindowManager
 import android.widget.Toast
 import co.ude.udenar.agroint.databinding.ActivityRegistroAgronomosBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegistroAgronomos : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private lateinit var binding: ActivityRegistroAgronomosBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroAgronomosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         binding.btnGoToLogin.setOnClickListener { goToLogin() }
         binding.btnRegister.setOnClickListener { register() }
@@ -38,10 +42,18 @@ class RegistroAgronomos : AppCompatActivity() {
         val password = binding.textFieldPassword.text.toString()
 
         if (isValidForm(name, lastName, id, phone, email, password)) {
-            /* Toast.makeText(this, "Formulario válido", Toast.LENGTH_SHORT).show() */
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Toast.makeText(this@RegistroAgronomos, "Registro exitoso", Toast.LENGTH_LONG).show()
+                    // Guardar el nombre de usuario en Firestore
+                    val user = auth.currentUser
+                    val userDoc = db.collection("users").document(user?.uid.toString())
+                    userDoc.set(mapOf("displayName" to name)).addOnSuccessListener {
+                        Toast.makeText(this@RegistroAgronomos, "Registro exitoso", Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this, MainActivity::class.java))
+                    }.addOnFailureListener {
+                        Toast.makeText(this@RegistroAgronomos, "Error al guardar el nombre de usuario", Toast.LENGTH_LONG).show()
+                        Log.d("FIRESTORE", "Error: ${it.message}")
+                    }
                 } else {
                     Toast.makeText(
                         this@RegistroAgronomos,
