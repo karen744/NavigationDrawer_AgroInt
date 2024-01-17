@@ -1,10 +1,13 @@
 package co.ude.udenar.agroint.ui.cropsconsulte
 
+import android.app.NotificationManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +15,8 @@ import co.ude.udenar.agroint.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class CropsConsulte : Fragment() {
 
@@ -21,6 +26,7 @@ class CropsConsulte : Fragment() {
     private lateinit var adapter: CropsAdapter // Asegúrate de reemplazar CropsAdapter con el nombre real de tu adaptador
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -61,6 +67,35 @@ class CropsConsulte : Fragment() {
     inner class CropsAdapter(private val cultivos: List<DocumentSnapshot>) :
         RecyclerView.Adapter<CropsAdapter.CultivoViewHolder>() {
 
+        fun sendNotification(cultivo: DocumentSnapshot) {
+            // Obtener los datos del cultivo
+            val nombreCultivo = cultivo.getString("nombreCultivo")
+            val tiempoCosecha = cultivo.getString("tiempoCosecha")
+            val fechaSiembra = cultivo.getString("fechaSiembra")
+
+            // Calcular la fecha de cosecha
+            val fechaCosecha = Calendar.getInstance()
+            if (tiempoCosecha != null) {
+                fechaCosecha.time = SimpleDateFormat("dd/MM/yyyy").parse(fechaSiembra)
+                fechaCosecha.add(Calendar.MONTH, tiempoCosecha.toInt())
+            }
+
+            // Obtener la fecha actual
+            val fechaActual = Calendar.getInstance()
+
+            // Comparar las fechas
+            val diferenciaEnMeses = -(fechaCosecha.timeInMillis - fechaActual.timeInMillis) / (1000 * 60 * 60 * 24 * 30)
+
+            // Enviar la notificación
+            val notificationManager =
+                requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationBuilder = NotificationCompat.Builder(requireContext(), "my_channel_id")
+                .setContentTitle("Cosecha próxima")
+                .setContentText("Te falta ${diferenciaEnMeses} mes para la cosecha de $nombreCultivo")
+                .setSmallIcon(R.drawable.ic_planta)
+            notificationManager.notify(1, notificationBuilder.build())
+        }
+
         inner class CultivoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val nombreCultivoTextView: TextView = itemView.findViewById(R.id.nombreCultivoTextView)
             val tipoCultivoTextView: TextView = itemView.findViewById(R.id.tipoCultivoTextView)
@@ -77,6 +112,10 @@ class CropsConsulte : Fragment() {
 
         override fun onBindViewHolder(holder: CultivoViewHolder, position: Int) {
             val document = cultivos[position]
+            holder.itemView.setOnClickListener {
+                // Enviar notificación
+                adapter.sendNotification(document)
+            }
 
             // Acceder a los datos de cada cultivo
             val nombreCultivo = document.getString("nombreCultivo")
